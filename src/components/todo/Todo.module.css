@@ -1,0 +1,48 @@
+.wrapper{
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  padding: 6px 15px;
+  position: relative;
+  border-bottom: 2px solid #52bff271;
+}
+.wrapper::after {
+  content: " ";
+  width: 0%;
+  height: 2px;
+  background-color:  #52bff2 ;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  transition: 0.4s;
+  opacity: 0.4;
+}
+
+.wrapper:hover:after {
+  width: 100%;
+  opacity: 1;
+}
+.form{
+  display: flex;
+  align-items: center;
+  width: 40%;
+}
+.form > input{ 
+  margin-right: 7px;
+}
+.form > p {
+  width: 80%;
+}
+.button{
+  padding: 3px 10px;
+  background-color: #52bff2;
+  border: none;
+  border-radius: 4px;
+  margin: 0 5px;
+  color: white;
+  z-index: 1;
+  cursor: pointer;
+}
+.checked{
+  text-decoration: line-through;
+}

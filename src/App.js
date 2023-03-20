@@ -1,25 +1,44 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import Header from "./components/header/Header";
+import Todo from "./components/todo/Todo";
+import CreateTodo from "./components/createTodo/CreateTodo";
 
+const todosArray = [ 
+	{
+		id: 1,
+		title : "buy orange", 
+		status: true
+	},
+	{
+		id: 2,
+		title : "buy Apple", 
+		status: true
+	},
+	{
+		id: 3,
+		title : "buy Banane", 
+		status: false
+	},
+	{
+		id: 4,
+		title : "buy Tomato", 
+		status: true
+	}
+]
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	const newTodos = todosArray.map(elem => <Todo title={elem.title} status={elem.status}/>) 
+
+	return (
+		<div className="App">
+			<Header checked={ todosArray.reduce((acc, curr) => acc + curr.status , 0 ) } length={todosArray.length}/>
+			<div className="content">
+				<CreateTodo />
+				<div className="todosWrapper">
+					{newTodos}
+				</div>
+			</div>
+		</div>
+	);
 }
 
 export default App;
