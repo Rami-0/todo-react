@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import { useState } from "react";
 
-function Example() {
-  const [count, setCount] = useState(0);
+function Test() {
+  const [count, setCount] = useState(1);
+  const [nameOfList , setNameOfList] = useState("")
 
-  return (
+  return ( 
     <div>
       <p>You clicked {count} times</p>
       <button onClick={() => setCount(count + 1)}>
@@ -14,4 +15,4 @@ function Example() {
 }
 
 
-export default Example 
+export default Test 
