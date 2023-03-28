@@ -1,9 +1,9 @@
 import css from "./Header.module.css"
 
-const Header = (props) => {
+const Header = ({checked, length }) => {
   return (
     <header className={css.header}>
-      <h1 className={css.h1}>Todos ({props.checked}/ {props.length})</h1>
+      <h1 className={css.h1}>Todos ({checked}/ {length})</h1>
     </header>
   )
 }

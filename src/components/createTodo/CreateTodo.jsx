@@ -1,30 +1,29 @@
 import { useState } from "react";
 import css from "./Create.module.css";
 
-const CreateTodo = ({todosArray , setTodos}) => {
-	const [label , setTitle] = useState("")
-
-	const data = {
-		title:label,
-		id:todosArray.length + 1,
-		status:false
-	}
+const CreateTodo = ({addTodo}) => {
+	const [title , setTitle] = useState("")
 
 	const onSubmit = (e) => {
 		e.preventDefault();
-		setTodos([...todosArray, data])
-		setTitle("")
+		if(title){
+			addTodo(title)
+			setTitle('')
+		}
+	}
+	const handleChange = (e) => {
+		setTitle(e.target.value)
 	}
 
 	return (
 		<div>
-			<form className={css.form} onSubmit={(e) => onSubmit(e)}>
+			<form className={css.form} onSubmit={onSubmit}> 
 				<input
 					type="text"
 					placeholder="Enter some todo"
 					className={css.input}
-					value={label}
-					onChange={(e) => setTitle(e.target.value)}
+					value={title}
+					onChange={handleChange}
 				/>
 				<button className={css.button} type="submit">Add</button>
 			</form>

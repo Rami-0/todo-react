@@ -12,6 +12,7 @@
 }
 .input:focus {
   background-color: #52bff25f;
+  outline: none;
 }
 
 .button{

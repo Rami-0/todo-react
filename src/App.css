@@ -19,6 +19,9 @@
   margin-top: 15px;
 }
 
+button{
+  cursor: pointer;
+}
 button:hover{
   background-color: #52bff2c9;
 }
