@@ -1,17 +1,12 @@
 import { useState } from "react";
 import css from "./Todo.module.css";
+import { useDispatch } from "react-redux";
+import { deleteTodo, editTodo, statusChange } from "../../redux/todoSlice";
 
-const Todo = ({
-	title,
-	status,
-	ID,
-	deleteTodo,
-	onStatusChange,
-	onEditTodo,
-}) => {
-
+const Todo = ({ title, status, ID, onStatusChange }) => {
 	const [isEdit, setEdit] = useState(false);
 	const [inputValue, setInputValue] = useState(title);
+	const dispatch = useDispatch();
 
 	const handleEdit = () => {
 		setEdit(!isEdit);
@@ -21,16 +16,12 @@ const Todo = ({
 	};
 	const submit = (e) => {
 		e.preventDefault();
-		onEditTodo(ID, inputValue);
+		dispatch(editTodo({ title: inputValue, id: ID }));
 		setEdit(false);
 	};
-
-	// const checked = () => {
-	// 	setClick(!isClick);
-	// 	todosArray[index].status = !isClick
-	// 	setTodos([...todosArray])
-	// }
-	// console.log(todosArray);
+	const handelStatus = () => {
+		dispatch(statusChange(ID));
+	};
 
 	return (
 		<div className={css.wrapper}>
@@ -43,17 +34,17 @@ const Todo = ({
 				<label>
 					<input
 						checked={status}
-						onChange={() => onStatusChange(ID)}
+						onChange={() => handelStatus(ID)}
 						type="checkbox"
 					/>
 					<p className={status ? css.compleat : ""}>{title}</p>
 				</label>
 			)}
 			<div>
-			<button className={css.button} onClick={handleEdit} >
-          Edit
-        </button>
-				<button className={css.button} onClick={() => deleteTodo(ID)}>
+				<button className={css.button} onClick={handleEdit}>
+					Edit
+				</button>
+				<button className={css.button} onClick={() => dispatch(deleteTodo(ID))}>
 					Del
 				</button>
 			</div>

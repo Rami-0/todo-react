@@ -1,23 +1,27 @@
 import { useState } from "react";
 import css from "./Create.module.css";
+import { useDispatch } from "react-redux";
+import { addTodo } from "../../redux/todoSlice";
 
-const CreateTodo = ({addTodo}) => {
-	const [title , setTitle] = useState("")
+const CreateTodo = () => {
+	const [title, setTitle] = useState("");
+	const dispatch = useDispatch();
 
 	const onSubmit = (e) => {
 		e.preventDefault();
-		if(title){
-			addTodo(title)
-			setTitle('')
+		if (title) {
+			dispatch(addTodo(title));
+			setTitle("");  
 		}
-	}
+	};
+
 	const handleChange = (e) => {
-		setTitle(e.target.value)
-	}
+		setTitle(e.target.value);
+	};
 
 	return (
 		<div>
-			<form className={css.form} onSubmit={onSubmit}> 
+			<form className={css.form} onSubmit={onSubmit}>
 				<input
 					type="text"
 					placeholder="Enter some todo"
@@ -25,7 +29,9 @@ const CreateTodo = ({addTodo}) => {
 					value={title}
 					onChange={handleChange}
 				/>
-				<button className={css.button} type="submit">Add</button>
+				<button className={css.button} type="submit">
+					Add
+				</button>
 			</form>
 		</div>
 	);
