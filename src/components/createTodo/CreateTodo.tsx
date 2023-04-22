@@ -1,21 +1,22 @@
-import { useState } from "react";
+import { SetStateAction, useState } from "react";
 import css from "./Create.module.css";
-import { useDispatch } from "react-redux";
 import { addTodo } from "../../redux/todoSlice";
+import { AppDispatch } from "../../redux";
 
 const CreateTodo = () => {
 	const [title, setTitle] = useState("");
-	const dispatch = useDispatch();
+	const dispatch = AppDispatch();
 
-	const onSubmit = (e) => {
+
+	const onSubmit = (e: { preventDefault: () => void; }) => {
 		e.preventDefault();
 		if (title) {
 			dispatch(addTodo(title));
-			setTitle("");  
+			setTitle("");
 		}
 	};
 
-	const handleChange = (e) => {
+	const handleChange = (e: { target: { value: SetStateAction<string>; }; }) => {
 		setTitle(e.target.value);
 	};
 
