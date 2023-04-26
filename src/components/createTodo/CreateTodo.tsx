@@ -1,4 +1,4 @@
-import { SetStateAction, useState } from "react";
+import { ChangeEvent, SetStateAction, useState } from "react";
 import css from "./Create.module.css";
 import { addTodo } from "../../redux/todoSlice";
 import { AppDispatch } from "../../redux";
@@ -8,7 +8,7 @@ const CreateTodo = () => {
 	const dispatch = AppDispatch();
 
 
-	const onSubmit = (e: { preventDefault: () => void; }) => {
+	const onSubmit = (e: ChangeEvent<HTMLFormElement>) => {
 		e.preventDefault();
 		if (title) {
 			dispatch(addTodo(title));
@@ -16,7 +16,7 @@ const CreateTodo = () => {
 		}
 	};
 
-	const handleChange = (e: { target: { value: SetStateAction<string>; }; }) => {
+	const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
 		setTitle(e.target.value);
 	};
 
