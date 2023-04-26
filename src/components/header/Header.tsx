@@ -1,11 +1,10 @@
 import React from "react";
 import css from "./Header.module.css";
-
-type Props = { 
+interface PropsType {
 	checked: number ,
 	length: number
 }
-const Header = ({ checked, length } : Props) => {
+const Header: React.FC<PropsType> = ({ checked, length }) => {
 	return (
 		<header className={css.header}>
 			<h1 className={css.h1}>

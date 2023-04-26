@@ -7,25 +7,19 @@ import React from "react";
 
 function App() {
 
-	// const todosArray = useAppSelector((state: RootState) => state.data);
-
+	// const todosArray = useSelector((state: RootState) => state.data);
 	const todosArray = AppSelector((state) => state.data);
 	console.log(todosArray);
 
 
 	const newTodos = todosArray.map((elem) => (
-		<Todo
-			key={elem.id}
-			title={elem.title}
-			status={elem.status}
-			ID={elem.id}
-		/>
+		<Todo key={elem.id} {...elem} />
 	));
 
 	return (
 		<div className="App">
 			<Header
-				checked={todosArray.reduce((acc, curr) => curr.status ? acc + 1 : acc, 0)}
+				checked={todosArray.reduce((acc, curr) => acc + Number(curr.status), 0)}
 				length={todosArray.length}
 			/>
 			<div className="content">
